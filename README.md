@@ -1,7 +1,10 @@
 # Simple-card-game
 Simple Card Game in React JS.
+
 React app created using 
+
 https://github.com/facebook/create-react-app ,
+
 Bulma CSS framework
 
 ## Getting Started
