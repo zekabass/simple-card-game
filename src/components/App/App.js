@@ -9,9 +9,9 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			playerName: 'Player',
-			numOfPlayers: 4,
-			gameStarted: false
+			playerName		: 	'Player',
+			numOfPlayers	: 	4,
+			gameStarted		: 	false
 		};
 
 		this.handleNameChange = this.handleNameChange.bind(this);
@@ -47,16 +47,16 @@ class App extends Component {
 			<div className={"App " + ( !this.state.gameStarted ? 'is-vcentered' : '')}>
 				{ this.state.gameStarted
 					? 	<GameTable 
-							playerName={this.state.playerName} 
-							numOfPlayers={this.state.numOfPlayers}
-							onQuit={this.quitGame}	
+							playerName		=	{this.state.playerName} 
+							numOfPlayers	=	{this.state.numOfPlayers}
+							onQuit			=	{this.quitGame}	
 						/>
 					: 	<MainMenu 
-							playerName={this.state.playerName} 
-							numOfPlayers={this.state.numOfPlayers}
-							playerNameAction={this.handleNameChange} 
-							numOfPlayersAction={this.handlePlayersChange}
-							onStartGame={this.startGame}
+							playerName			=	{this.state.playerName} 
+							numOfPlayers		=	{this.state.numOfPlayers}
+							playerNameAction	=	{this.handleNameChange} 
+							numOfPlayersAction  =	{this.handlePlayersChange}
+							onStartGame			=	{this.startGame}
 						/>
 				}
 			</div>

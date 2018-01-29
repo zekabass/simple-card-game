@@ -7,7 +7,7 @@ class App extends Component {
 	}
 
   	render(props) {	
-		const isMobile = window.innerWidth <= 768;
+		// const isMobile = window.innerWidth <= 768;
 		let userCardsRow1 = [] ;
 		let userCardsRow2 = [] ;
 
@@ -41,7 +41,7 @@ class App extends Component {
 						<span className="ver-divider"> | </span> 
 						<span className={"has-text-dark " + (this.props.roundWinner === 0 ? 'blink-me' : '')}>Score: {this.props.players[0].score}</span>
 					</h1>
-					<div className={"user-cards " + (isMobile && !this.props.blockingUser? 'visible ' : 'hide') }>
+					<div className={"user-cards " + (!this.props.blockingUser && !this.props.gameWinners.length > 0 ? 'visible ' : 'hide') }>
 						<div className="columns is-mobile is-multiline is-centered">
 							{userCardsRow1}
 						</div>

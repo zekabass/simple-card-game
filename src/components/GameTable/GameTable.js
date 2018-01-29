@@ -35,7 +35,8 @@ class App extends Component {
 			
 			cardValueMap	: 	{
 				"ACE"	: 	1,
-				"1"		: 	2,
+				"1"		: 	1,
+				"2"		: 	2,
 				"3"		: 	3,
 				"4"		: 	4,
 				"5"		: 	5,
@@ -75,7 +76,11 @@ class App extends Component {
 		/* GET dack of cars */
 		this.getDeckOfCard();
 	}
-	
+
+	componentDidMount() {
+		this._isMounted = true;
+	}
+
 	/* Go to main menu click handle */
 	goToMainMenu() {
 		/* Quiting game */
@@ -178,11 +183,10 @@ class App extends Component {
 		currentRound.push({
 			playerId: playerId,
 			cardValue: playerCard.value,
-			cardImg: playerCard.img
+			cardImg: playerCard.image
 		})
 
 		players[playerId].cardsCount -= 1;
-
 
 		this.setState({ players : players });
 		this.setState({ round : currentRound });
@@ -193,33 +197,34 @@ class App extends Component {
 	 * @param {Object} card 
 	 */
 	onUserCardSelect(card) {
-
+	
 		if(card && !this.state.blockingUser) {
 			let delay = 500;
-
-			// Starting new round - reset array
-			this.setState({round: this.state.round.splice(0,this.state.round.length)});
 
 			// Block user click on card until end of the round
 			this.setState({blockingUser: true});
 
 			// take card that user clicks
 			this.discardFromHand(0, card);
-			
+			this.setState({ activePlayer : 1 });
+
 			// take random card from bot players
 			for(let i = 1; i < this.props.numOfPlayers; i++) {
-				delay += 700;
 				setTimeout(()=> {
-					this.discardFromHand(i);
 					this.setState({ activePlayer : i });
+					
+					setTimeout(()=> {
+						this.discardFromHand(i);
+						// Last player has played
+						if(i === (this.props.numOfPlayers - 1)){
+							setTimeout(()=> {
+								this.onEndOfRound();
+							},700)
+						}
+					},700)
 
-					// Last player has played
-					if(i === (this.props.numOfPlayers - 1)){
-						setTimeout(()=> {
-							this.onEndOfRound();
-						},700)
-					}
 				},delay)
+				delay += 1000;
 			}
 		}
 	}
@@ -243,7 +248,7 @@ class App extends Component {
 		players[winner].score += roundVal;
 
 		this.setState({ roundWinner : winner} );
-
+	
 		/* 1s Timeout so we can show round winner */
 		setTimeout(()=> {
 			/* Unblock user action */
@@ -251,6 +256,9 @@ class App extends Component {
 			this.setState({ activePlayer : 0 });
 			this.setState({ players : players });
 			this.setState({ roundWinner : false });
+			// Starting new round - reset array
+			let newRound = [];
+			this.setState({round: newRound })
 
 			// END OF THE GAME
 			if(players[winner].cardsCount === 0) {
@@ -276,7 +284,10 @@ class App extends Component {
 				<div className="game-table">
 
 					{/* Top Header */}	
-					<TopBar onOpenInfo={this.openInfoWindow.bind(this)} onGotoMainMenu={this.goToMainMenu.bind(this)} />
+					<TopBar 
+						onOpenInfo		=	{ this.openInfoWindow.bind(this) } 
+						onGotoMainMenu	=	{ this.goToMainMenu.bind(this) } 
+					/>
 
 
 					{/* Generate Bot players */}	
@@ -289,7 +300,11 @@ class App extends Component {
 
 
 					{/* Generate View for pile of discarded cards */}		
-					<Pile numOfPlayers={this.props.numOfPlayers } />
+					<Pile 
+						numOfPlayers	=	{ this.props.numOfPlayers } 
+						round			=	{ this.state.round } 
+						roundWinner		=	{ this.state.roundWinner }
+					/>
 
 
 					{/* Generate User cards and his result */}	
@@ -300,6 +315,7 @@ class App extends Component {
 						activePlayer	=	{ this.state.activePlayer }
 						roundWinner		=	{ this.state.roundWinner }
 						playerName		=	{ this.props.playerName }
+						gameWinners		= 	{ this.state.gameWinners }
 						onUserCardSelect= 	{ this.onUserCardSelect.bind(this) }
 					/>
 					

@@ -47,6 +47,10 @@ body, button, input, select, textarea {
   padding:20px;
 }
 
+.game-logo {
+  min-height: 120px !important;
+}
+
 .main-menu  .is-checkradio[type="radio"] + label {
   font-size:19px;
 }
@@ -62,7 +66,7 @@ body, button, input, select, textarea {
 
 .center {
   margin: auto;
-  width: 50%;
+  width: 500px;
   border: 1px solid #606060;
   padding: 10px;
   background: #fff;

@@ -6,37 +6,77 @@ class App extends Component {
 		let pileRow1 = [] ;
 		let pileRow2 = [] ;
 		let pileRow3 = [] ;
+
+		/* Generating players postions on the table.
+		 Positions depends on players number  */
 		for (let i = 1; i <= this.props.numOfPlayers; i++) {
+
+			/* Setting card image as background image */
+			let background = {
+				backgroundImage: this.props.round[i-1] ? `url(${this.props.round[i-1].cardImg})` : '',
+			};
+
+			/* USER IS ALWAYS ON THE SAME POSITION */
 			if(i === 1) {
 				pileRow1.push(
 					<div key={i} className="column is-narrow">
-						<div className={"card-holder " + ( this.props.numOfPlayers > 2 ? 'lower-card-pos' : '' )}></div>
+						<div className = {"card-holder " 
+							+ ( this.props.numOfPlayers > 3 ? 'lower-card-pos ' : '' ) 
+							+ ( (i-1) === this.props.roundWinner ? 'blink-me' : '' )} 
+							style={background}
+						></div>
 					</div>	
 				);
-			}
-			if(this.props.numOfPlayers > 2) {
-				if(i === 2 || i === 3) {
-					pileRow2.push(
-						<div key={i} className="column">
-							<div className="card-holder"></div>
-						</div>	
-					);
-				}	
-				if(i === 4) {
-					pileRow3.push(
-						<div key={i} className="column is-narrow">
-							<div className="card-holder upper-card-pos"></div>
-						</div>	
-					);
-				}	
 			} else {
-				if(i === 2) {
+
+				/* If is 2 players. Putting bot player above player */
+				if(this.props.numOfPlayers === 2) {
 					pileRow3.push(
 						<div key={i} className="column is-narrow">
-							<div className="card-holder "></div>
+							<div 
+								className = {"card-holder " 
+								+ ( (i-1) === this.props.roundWinner ? 'blink-me' : '' )} 
+								style={background}
+							></div>
 						</div>	
 					);
 				}	
+
+				/* If is 3 player. Putting 2 bot players on sides */
+				if(this.props.numOfPlayers === 3) {
+					pileRow2.push(
+						<div key={i} className="column is-narrow">
+							<div className = {"card-holder " 
+								+ ( (i-1) === this.props.roundWinner ? 'blink-me' : '' )} 
+								style={background}
+							></div>
+						</div>	
+					);
+				}	
+
+				/* If is 4 player. Putting players on every side*/
+				if(this.props.numOfPlayers === 4) {
+					if(i === 2 || i === 4) {
+						pileRow2.push(
+							<div key={i} className="column">
+								<div className = {"card-holder " 
+									+ ( (i-1) === this.props.roundWinner ? 'blink-me' : '' )} 
+									style={background}
+								></div>
+							</div>	
+						);
+					}	
+					if(i === 3) {
+						pileRow3.push(
+							<div key={i} className="column is-narrow">
+								<div className={"card-holder upper-card-pos "  
+									+ ( (i-1) === this.props.roundWinner ? 'blink-me' : '' )} 
+									style={background}
+								></div>
+							</div>	
+						);
+					}	
+				} 
 			}
 		}
 

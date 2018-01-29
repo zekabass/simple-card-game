@@ -12,7 +12,7 @@ class App extends Component {
 					<h1 className="title is-4 game-name">Card Game</h1>
 				</div>
 
-				<div className="section">
+				<div className="section game-logo">
 					<div className="columns is-centered">
 						<div className="column is-narrow is-vcentered">
 							<h1 className="title is-5">Name:</h1>

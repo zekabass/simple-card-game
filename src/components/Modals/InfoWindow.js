@@ -12,6 +12,11 @@ class App extends Component {
 				<div className="modal-background"></div>
 				<div className="modal-card">
 					<section className="modal-card-body">
+						<div className="columns is-centered">
+							<div className="column has-text-right">
+								<button className="button is-primary cls-modal" onClick={this.props.onClose}> Quit </button>
+							</div>
+						</div>
 						<h1 className="title is-4">INFO</h1>
 						<div className="columns is-mobile is-centered">
 							<div className="column is-narrow">
@@ -42,11 +47,7 @@ class App extends Component {
 								</div>
 							</div>	
 						</div>
-						<div className="columns is-centered">
-							<div className="column">
-								<button className="button is-primary" onClick={this.props.onClose}> Quit </button>
-							</div>
-						</div>		
+								
 					</section>
 				</div>
 			</div>
