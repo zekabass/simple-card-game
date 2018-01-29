@@ -1,5 +1,5 @@
 # Simple-card-game
-Simple Card Game in React JS.
+Responsive Simple Card Game in React JS.
 
 React app created using 
 
