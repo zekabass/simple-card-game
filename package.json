@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "simple-card-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -11,9 +11,13 @@ class App extends Component {
 		}  	
 
 		let winnerText=[];
+
 		if(this.props.gameWinners.length > 1) {
 			winnerText.push (
-				<span key="win1"> Winners are: </span>
+				<div>
+					<h1 className="title is-6"><span key="win1"> Awesome, we have {this.props.gameWinners.length} winners</span></h1>
+					<h1 className="title is-4"><span key="win1"> Winners are: </span></h1>
+				</div>
 			)
 		} else {
 			winnerText.push (
@@ -27,12 +31,9 @@ class App extends Component {
 				<div className="modal-card">
 					<section className="modal-card-body">
 						<h1 className="title is-4">GAME FINISHED!</h1>
-						<h1 className="title is-4">{winnerText}</h1>
+						{winnerText}
 						{winners}
 						<div className="columns">
-							{/* <div className="column">
-								<button className="button is-primary"> Restart </button>
-							</div> */}
 							<div className="column">
 								<button className="button is-primary" onClick={this.props.goToMainMenu}> Go to Main Menu </button>
 							</div>

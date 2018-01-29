@@ -3,14 +3,9 @@ import React, { Component } from 'react';
 import Logo from '../../dist/img/logo.svg';
 
 class App extends Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	console.log(props)
-	// }
 
   	render() {
 		return (
-
 			<div className="main-menu center">
 				<div className="section">
 					<img width="40" src={Logo} alt=""/>
