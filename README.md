@@ -5,7 +5,9 @@ React app created using
 
 https://github.com/facebook/create-react-app ,
 
-Bulma CSS framework
+https://deckofcardsapi.com/,
+
+Bulma CSS framework.
 
 ## Getting Started
 
