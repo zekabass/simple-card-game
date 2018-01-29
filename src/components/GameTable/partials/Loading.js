@@ -7,7 +7,7 @@ class App extends Component {
 			<div>
 				<div className="columns full-loader">
 					<div className="column is-vcentered">
-						<h1 className="title is-3"><span>LOADING GAME....</span> </h1>
+						<h1 className="title is-3 blink-me "><span>LOADING GAME....</span> </h1>
 					</div>
 				</div>
 			</div>
