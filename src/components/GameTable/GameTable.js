@@ -263,7 +263,6 @@ class App extends Component {
 			roundVal += this.state.cardValueMap[cardValKey];
 		}
 
-		console.log(roundVal)
 		let players = this.state.players;
 		players[winner].score = players[winner].score + roundVal;
 
