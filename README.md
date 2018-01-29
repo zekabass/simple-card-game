@@ -4,7 +4,7 @@ Simple Card Game in React JS.
 React app created using 
 
 https://github.com/facebook/create-react-app ,
-
+https://deckofcardsapi.com/,
 Bulma CSS framework
 
 ## Getting Started
