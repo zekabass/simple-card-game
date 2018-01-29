@@ -27,5 +27,5 @@ npm install
 After install is finished we need to run application.
 App will be served on http://localhost:3000.
 ```
-npm start
+npm start OR npm build
 ```
