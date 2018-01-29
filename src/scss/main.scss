@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700');
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
+
+@import "./variables";
+
+@import "~bulma/bulma";
+@import '~bulma-extensions/bulma-checkradio/bulma-checkradio';
+
+body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background:$background;
+}
+
+body, button, input, select, textarea {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background:$background;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.clickable:hover {
+  cursor: pointer;
+} 
+
+.is-vcentered {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.main-menu .section {
+  padding:20px;
+}
+
+.main-menu  .is-checkradio[type="radio"] + label {
+  font-size:19px;
+}
+
+.game-name {
+  font-family: 'Monoton', cursive;
+  font-weight: normal;
+}
+
+.main-menu input[type="radio"] {
+  margin-right: 15px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 1px solid #606060;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  min-height: 300px;
+}
+
+.input.player-name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.has-normal-font {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+@media (max-width: 768px)  { 
+  .center {
+    width: 90%;
+  }
+}
+

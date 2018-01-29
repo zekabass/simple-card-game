@@ -1,0 +1,191 @@
+@import "./variables";
+
+.game-table {
+  // border: 1px solid #fff;
+  border-radius:10px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px;
+  color: #fff;
+  padding: 0px;
+}
+
+.table-part.columns:nth-child(2) {
+  margin-top: 10px !important;
+}
+
+.userCardImg {
+  padding: 0px;
+}
+
+.card-holder {
+  width: 84px;
+  height: 115px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.card-holder:hover {
+  cursor: pointer;
+}
+
+.table-part.pile .card-holder:hover {
+  cursor: initial;
+}
+
+.table-part .title span {
+  color:#fff;
+}
+
+.game-header {
+  background: #fff;
+  color: #000;
+  border-radius: 0px 0px 7px 7px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.card-holder.inactive {
+  opacity:0.5;
+}
+
+.modal-card-body {
+  border-radius: 7px;
+}
+
+.win-indicate {
+  background: #a7d1ba;
+  border-radius: 5px;
+}
+
+.player-img {
+  margin: 0 auto;
+  border-radius: 100%;
+}
+
+.ver-divider {
+  color:#a3c9b5 !important;
+}
+
+.multiple-img {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.player-img {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.pulse.active-player {
+  display: block;
+}
+
+.pulse.in-info {
+  display: block;
+  margin-top: 0px;
+}
+
+.pulse {
+  display: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #cca92c;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+  animation: pulse 2s infinite;
+  margin: 0px auto;
+  margin-top: -22px;
+  position: relative;
+}
+.pulse:hover {
+  animation: none;
+  cursor: inherit;
+}
+
+.lower-card-pos {
+  margin-top: -70px;
+}
+
+.upper-card-pos {
+  margin-bottom: -70px;
+}
+
+.full-loader {
+  height: 100vh;  
+}
+
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+.blink-me {
+  animation: blinker 0.7s linear infinite;
+}
+
+.win-indicate.blink-me {
+  animation: blinkerbg 1.2s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+@keyframes blinkerbg {  
+  50% { background: rgba(167, 209, 186, 0); }
+}
+
+@media (max-width: 768px)  { 
+  .game-table .game-name{
+    display: none;
+  }
+
+  .game-table {
+    padding: 0px;
+  }
+
+  .game-header {
+    margin-top: 0px;
+  }
+
+  .table-part.user .card-holder {
+    border:none;
+  }
+
+  .user-cards {
+    margin-left: -20px;
+  }
+
+  .card-holder {
+    width: 60px;
+    height: 95px;
+  }
+}
