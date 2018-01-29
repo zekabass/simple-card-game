@@ -94,7 +94,9 @@ class App extends Component {
 		this.setState({ infoActive : false });
 	}
 
-
+	/**
+	 * Getting and storing deck of cards from API
+	 */
 	getDeckOfCard() {
 		axios({
 			method:'get',
@@ -111,6 +113,10 @@ class App extends Component {
 		});
 	}
 
+	/**
+	 * Getting random cards from deck and giving it to players
+	 * @param {Number} playerIndex 
+	 */
 	drawCards(playerIndex) {
 		axios({
 			method:'get',
@@ -120,7 +126,7 @@ class App extends Component {
 			if(response.status === 200) {
 				let playersArr = this.state.players;
 
-				// regenerate player object
+				/* Regenerate players array with updated player object */
 				playersArr[playerIndex] = {
 					cards : [...response.data.cards],
 					cardsCount: this.state.shuffleHand,
@@ -131,7 +137,7 @@ class App extends Component {
 				this.setState({ players : playersArr });	
 		
 				if(playerIndex === (this.props.numOfPlayers - 1)) {
-					/* All card are drawed. Hide game loader */
+					/* All card are drawed to players. Hide game loader */
 					this.setState({ gameLoaded : true });
 					this.setState({ blockingUser: false });
 				}
@@ -139,13 +145,19 @@ class App extends Component {
 		});
 	}
 
+	/**
+	 * Removing card from players hand
+	 * @param {Number} playerId 
+	 * @param {Object} playerCard 
+	 */
 	discardFromHand(playerId,playerCard) {
 		let cardIndex;
 		let currentRound = this.state.round;
 		let players = this.state.players;
 
 		if(playerCard) {
-			// Get card from user
+			/* Finding User card code by card index and change it to undifined
+			Because we want cards to stay on the same place on the table*/
 			cardIndex = players[playerId].cards.findIndex((card) =>{
 				if(card) {	
 					return card.code === playerCard.code;
@@ -153,13 +165,16 @@ class App extends Component {
 				return false;
 			});
 			players[playerId].cards[cardIndex] = undefined;
+
 		} else {
-			// get card from bot player
+			/* Get card from bot players array. 
+			We dont need graphic view so we remove it from array */
 			cardIndex = Math.floor(Math.random() * players[playerId].cardsCount);
 			playerCard = players[playerId].cards[cardIndex];	
 			players[playerId].cards.splice(cardIndex,1);
 		}	
 		
+		/* Generate round object.*/
 		currentRound.push({
 			playerId: playerId,
 			cardValue: playerCard.value,
@@ -168,11 +183,15 @@ class App extends Component {
 
 		players[playerId].cardsCount -= 1;
 
+
 		this.setState({ players : players });
 		this.setState({ round : currentRound });
-		
 	}
 
+	/**
+	 * User click on the card event handling
+	 * @param {Object} card 
+	 */
 	onUserCardSelect(card) {
 
 		if(card && !this.state.blockingUser) {

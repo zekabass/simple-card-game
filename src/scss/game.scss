@@ -167,7 +167,11 @@
   .full-loader {
     padding-top: 50%;  
   }
-    
+  
+  .table-part.user .card-holder {
+    border-radius: 0px !important;
+  }
+
   .game-table .game-name{
     display: none;
   }

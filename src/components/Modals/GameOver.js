@@ -15,13 +15,17 @@ class App extends Component {
 		if(this.props.gameWinners.length > 1) {
 			winnerText.push (
 				<div>
-					<h1 className="title is-6"><span key="win1"> Awesome, we have {this.props.gameWinners.length} winners</span></h1>
-					<h1 className="title is-4"><span key="win1"> Winners are: </span></h1>
+					<h1 className="title is-6">
+						<span className="has-text-dark" key="win1"> Awesome, we have {this.props.gameWinners.length} winners</span>
+					</h1>
+					<h1 className="title is-4">
+						<span className="has-text-dark" key="win1"> Winners are: </span>
+					</h1>
 				</div>
 			)
 		} else {
 			winnerText.push (
-				<span key="win2"> Winners is: </span>
+				<span className="has-text-dark" key="win2"> Winner is: </span>
 			)
 		}
 
