@@ -13,7 +13,7 @@ Bulma CSS framework.
 
 ### Step 1
 
-Download project
+Download or Clone project
 
 ### Step 2
 
@@ -27,5 +27,5 @@ npm install
 After install is finished we need to run application.
 App will be served on http://localhost:3000.
 ```
-npm start OR npm build
+npm start
 ```

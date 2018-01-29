@@ -28,7 +28,7 @@ class App extends Component {
 			round 			:	[],
 			infoActive 		: 	false,
 			gameOverActive	: 	false,
-			blockingUser 	: 	false,
+			blockingUser 	: 	true,
 			activePlayer 	: 	0,
 			gameWinners 	: 	[],
 			roundWinner 	: 	false,
@@ -85,13 +85,13 @@ class App extends Component {
 	/* Open info window click handle */
 	openInfoWindow() {
 		/* Opening info window */
-		this.setState({infoActive:true});	
+		this.setState({ infoActive : true });	
 	}
 
 	/* Close info window click handle */
 	closeInfoWindow() {
 		/* Closing info window */
-		this.setState({infoActive: false});
+		this.setState({ infoActive : false });
 	}
 
 
@@ -102,7 +102,7 @@ class App extends Component {
 		})
 		.then((response) => {
 			if(response.status === 200) {
-				this.setState({deck: response.data});
+				this.setState({ deck : response.data });
 				
 				for(let i = 0; i < this.props.numOfPlayers; i++) {
 					this.drawCards(i);
@@ -128,11 +128,12 @@ class App extends Component {
 					name: this.state.players[playerIndex].name
 				};		
 				
-				this.setState({players: playersArr});	
+				this.setState({ players : playersArr });	
 		
 				if(playerIndex === (this.props.numOfPlayers - 1)) {
 					/* All card are drawed. Hide game loader */
-					this.setState({gameLoaded: true});
+					this.setState({ gameLoaded : true });
+					this.setState({ blockingUser: false });
 				}
 			}
 		});
@@ -167,8 +168,8 @@ class App extends Component {
 
 		players[playerId].cardsCount -= 1;
 
-		this.setState({players: players});
-		this.setState({round: currentRound});
+		this.setState({ players : players });
+		this.setState({ round : currentRound });
 		
 	}
 
@@ -191,7 +192,7 @@ class App extends Component {
 				delay += 700;
 				setTimeout(()=> {
 					this.discardFromHand(i);
-					this.setState({activePlayer: i});
+					this.setState({ activePlayer : i });
 
 					// Last player has played
 					if(i === (this.props.numOfPlayers - 1)){
@@ -222,15 +223,15 @@ class App extends Component {
 		let players = this.state.players;
 		players[winner].score += roundVal;
 
-		this.setState({roundWinner: winner});
+		this.setState({ roundWinner : winner} );
 
 		/* 1s Timeout so we can show round winner */
 		setTimeout(()=> {
 			/* Unblock user action */
-			this.setState({blockingUser: false});
-			this.setState({activePlayer: 0});
-			this.setState({players: players});
-			this.setState({roundWinner: false});
+			this.setState({ blockingUser : false });
+			this.setState({ activePlayer : 0 });
+			this.setState({ players : players });
+			this.setState({ roundWinner : false });
 
 			// END OF THE GAME
 			if(players[winner].cardsCount === 0) {
@@ -245,8 +246,8 @@ class App extends Component {
 			return o.score === maxResult; 
 		})
 
-		this.setState({gameWinners: winners });
-		this.setState({gameOverActive: true});	
+		this.setState({ gameWinners: winners });
+		this.setState({ gameOverActive: true });	
 	}
 
   	render() {

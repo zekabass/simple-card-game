@@ -180,12 +180,44 @@
     border:none;
   }
 
-  .user-cards {
-    margin-left: -20px;
-  }
-
   .card-holder {
     width: 60px;
     height: 95px;
   }
+
+  .table-part.user .user-cards{
+    border-top: 3px solid #4f4f4f;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background:rgba(234, 234, 234, 0.85);
+  }
+
+  .table-part.user .user-cards.visible{
+    max-height: 300px;
+    transition: max-height 0.7s ease-in;
+    -webkit-transition: max-height 0.7s ease-in;
+    -moz-transition: max-height 0.7s ease-in;
+    -o-transition: max-height 0.7s ease-in;
+  }
+
+  .table-part.user .user-cards.hide{
+    max-height: 0;
+    transition: max-height 0.7s ease-out;
+    -webkit-transition: max-height 0.7s ease-out;
+    -moz-transition: max-height 0.7s ease-out;
+    -o-transition: max-height 0.7s ease-out;
+    overflow: hidden;
+  }
+
+  .table-part.user .user-cards.hide .columns{
+    margin-top: 20px !important;
+  }
+
+  .table-part.user .user-cards.hide {
+    padding-top: 0px !important;
+  }
+  
 }

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+
 	onUserCardSelect(card) {
 		this.props.onUserCardSelect(card)
 	}
 
   	render(props) {	
+		const isMobile = window.innerWidth <= 768;
 		let userCardsRow1 = [] ;
 		let userCardsRow2 = [] ;
 
@@ -30,7 +32,7 @@ class App extends Component {
 		}
 
 		return (		
-			<div className="columns table-part user is-marginless is-centered">
+			<div  className="columns table-part user is-marginless is-centered ">
 				<div className="column">
 					<h1> {this.props.players[0].cardsCount > 0 }</h1>
 					<h1 className="title is-2">
@@ -39,7 +41,7 @@ class App extends Component {
 						<span className="ver-divider"> | </span> 
 						<span className={"has-text-dark " + (this.props.roundWinner === 0 ? 'blink-me' : '')}>Score: {this.props.players[0].score}</span>
 					</h1>
-					<div className="user-cards">
+					<div className={"user-cards " + (isMobile && !this.props.blockingUser? 'visible ' : 'hide') }>
 						<div className="columns is-mobile is-multiline is-centered">
 							{userCardsRow1}
 						</div>
