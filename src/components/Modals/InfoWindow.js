@@ -1,10 +1,8 @@
+/* This is Info modal that show game info */
+
 import React, { Component } from 'react';
 
 class App extends Component {
-
-	goToMainMenu() {
-		window.location.reload();
-	}
 
   	render(props) {
 		return (		
@@ -47,7 +45,6 @@ class App extends Component {
 								</div>
 							</div>	
 						</div>
-								
 					</section>
 				</div>
 			</div>

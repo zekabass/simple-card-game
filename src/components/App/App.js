@@ -14,6 +14,7 @@ class App extends Component {
 			gameStarted		: 	false
 		};
 
+		/* Neseccery binding */
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handlePlayersChange = this.handlePlayersChange.bind(this);
 		this.startGame = this.startGame.bind(this);
@@ -24,20 +25,36 @@ class App extends Component {
 		this._isMounted = true;
 	}
 
+	/**
+	 * Handle player name input change
+	 * @param {Object} event 
+	 */
 	handleNameChange(event) {
 		if(this._isMounted) {
 			this.setState({playerName: event.target.value});
 		}	
 	}
 
+	/**
+	 * Handle players number radio input change
+	 * @param {Object} event 
+	 */
 	handlePlayersChange(event) {
 		this.setState({numOfPlayers: parseInt(event.target.value,10)});
 	}
 
+	/**
+	 * Start game button action. Starting game
+	 */
 	startGame() {
-		this.setState({gameStarted: true});
+		if(this.state.playerName.length > 0) {
+			this.setState({gameStarted: true});
+		}		
 	}
 
+	/**
+	 * Quit game button action
+	 */
 	quitGame() {
 		this.setState({gameStarted: false});
 	}

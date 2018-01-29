@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+/* Getting Logo image */
 import Logo from '../../dist/img/logo.svg';
 
 class App extends Component {
@@ -20,7 +21,7 @@ class App extends Component {
 						<div className="column is-6">
 							<div className="field">
 								<div className="control">
-								<input className="input is-medium player-name" type="text" placeholder="Your Name" defaultValue={this.props.playerName} onChange={this.props.playerNameAction} />
+								<input maxLength="10" className="input is-medium player-name" type="text" placeholder="Your Name" defaultValue={this.props.playerName} onChange={this.props.playerNameAction} />
 								</div>
 							</div>
 						</div>

@@ -4,6 +4,8 @@ class App extends Component {
 
   	render(props) {
 		let winners = [];
+
+		/* If there is a multiple winners we need to show them all */
 		for (let i = 0; i < this.props.gameWinners.length ; i++) {
 			winners.push(
 				<h1 className="title is-3" key={i}>{this.props.gameWinners[i].name} </h1> 
@@ -12,6 +14,7 @@ class App extends Component {
 
 		let winnerText=[];
 
+		/* Just showing different text if there is multiple winners */
 		if(this.props.gameWinners.length > 1) {
 			winnerText.push (
 				<div>

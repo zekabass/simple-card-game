@@ -15,9 +15,9 @@ class App extends Component {
 			let background = {
 				backgroundImage: this.props.round[i-1] ? `url(${this.props.round[i-1].cardImg})` : '',
 			};
-
-			/* USER IS ALWAYS ON THE SAME POSITION */
+	
 			if(i === 1) {
+				/* USER IS ALWAYS ON THE SAME POSITION */
 				pileRow1.push(
 					<div key={i} className="column is-narrow">
 						<div className = {"card-holder " 
@@ -27,6 +27,7 @@ class App extends Component {
 						></div>
 					</div>	
 				);
+				/* ---------------- */
 			} else {
 
 				/* If is 2 players. Putting bot player above player */
@@ -41,6 +42,7 @@ class App extends Component {
 						</div>	
 					);
 				}	
+				/* ---------------- */
 
 				/* If is 3 player. Putting 2 bot players on sides */
 				if(this.props.numOfPlayers === 3) {
@@ -53,6 +55,7 @@ class App extends Component {
 						</div>	
 					);
 				}	
+				/* ---------------- */
 
 				/* If is 4 player. Putting players on every side*/
 				if(this.props.numOfPlayers === 4) {
@@ -77,6 +80,7 @@ class App extends Component {
 						);
 					}	
 				} 
+				/* ---------------- */
 			}
 		}
 

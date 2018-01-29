@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class App extends Component {
 
+	/**
+	 * When user clicks card pass it to parent comp to onUserCardSelect function
+	 * @param {Object} card 
+	 */
 	onUserCardSelect(card) {
 		this.props.onUserCardSelect(card)
 	}
@@ -12,10 +16,15 @@ class App extends Component {
 		let userCardsRow2 = [] ;
 
         for (let i = 0; i < this.props.shuffleHand; i++) {
+			/* Set card variable. Shortening name for later use*/
 			let card = this.props.players[0].cards[i];
+
+			/* Get card image for display. Setting it as background image*/
 			let background = {
 				backgroundImage: card ? `url(${card.image})` : '',
 			};
+			
+			/* Divide user cards in two rows*/
 			if(i < (this.props.shuffleHand/2)) {
 				userCardsRow1.push(
 					<div className="column is-2-desktop is-one-fifth-mobile" key={i}>

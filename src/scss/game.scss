@@ -26,7 +26,7 @@
   border: 2px solid #fff;
   border-radius: 5px;
   margin: 0 auto;
-  box-shadow: 1px 2px 15px 1px #545454;
+  box-shadow: 1px 1px 11px 1px #545454;
 }
 
 .card-holder.mark-winner {
@@ -176,7 +176,9 @@
   50% { background: rgba(167, 209, 186, 0); }
 }
 
-@media (max-width: 768px)  { 
+
+@media (max-width: 768px), screen and (max-height: 900px) {
+
   .full-loader {
     padding-top: 50%;  
   }

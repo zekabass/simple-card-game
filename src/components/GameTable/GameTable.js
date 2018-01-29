@@ -109,12 +109,17 @@ class App extends Component {
 		})
 		.then((response) => {
 			if(response.status === 200) {
+				/* Saving deck */
 				this.setState({ deck : response.data });
 				
+				/* Give cards to all players */
 				for(let i = 0; i < this.props.numOfPlayers; i++) {
 					this.drawCards(i);
 				}
 			}
+		})
+		.catch(function (error) {
+			console.error(error);
 		});
 	}
 
@@ -142,11 +147,14 @@ class App extends Component {
 				this.setState({ players : playersArr });	
 		
 				if(playerIndex === (this.props.numOfPlayers - 1)) {
-					/* All card are drawed to players. Hide game loader */
+					/* All cards are drawed to players. Hide game loader */
 					this.setState({ gameLoaded : true });
 					this.setState({ blockingUser: false });
 				}
 			}
+		})
+		.catch(function (error) {
+			console.error(error);
 		});
 	}
 
@@ -185,11 +193,13 @@ class App extends Component {
 			cardValue: playerCard.value,
 			cardImg: playerCard.image
 		})
+		this.setState({ round : currentRound });
 
 		players[playerId].cardsCount -= 1;
 
+		/* Save players obj change to state.*/
 		this.setState({ players : players });
-		this.setState({ round : currentRound });
+		
 	}
 
 	/**
@@ -201,40 +211,49 @@ class App extends Component {
 		if(card && !this.state.blockingUser) {
 			let delay = 500;
 
-			// Block user click on card until end of the round
+			/* Block user click on card until end of the round */
 			this.setState({blockingUser: true});
 
-			// take card that user clicks
+			/* take card that user clicks */
 			this.discardFromHand(0, card);
+
+			/*	Set user whos currently playing. User is always first */
 			this.setState({ activePlayer : 1 });
 
-			// take random card from bot players
+			/* take random card from bot players*/
 			for(let i = 1; i < this.props.numOfPlayers; i++) {
+				/* Setting timeouts so we have delay between players*/
 				setTimeout(()=> {
 					this.setState({ activePlayer : i });
-					
 					setTimeout(()=> {
 						this.discardFromHand(i);
-						// Last player has played
+
+						/* Last player has played*/
 						if(i === (this.props.numOfPlayers - 1)){
 							setTimeout(()=> {
+								/* Round is finished*/
 								this.onEndOfRound();
 							},700)
 						}
 					},700)
-
 				},delay)
+
+				/* Increase delay for the next player*/
 				delay += 1000;
 			}
 		}
 	}
 
+	/**
+	 * Function is triggered on round finish
+	 */
 	onEndOfRound() {
 		let winner;
 		let cardValKey = 0;
 		let cardVal = 0;
 		let roundVal = 0;
 
+		/* Get the value of all cards in round and add to the winner */
 		for(let i = 0; i < this.state.round.length; i++) {		
 			cardValKey = this.state.round[i].cardValue;
 			if(this.state.cardValueMap[cardValKey] >= cardVal) {
@@ -243,32 +262,40 @@ class App extends Component {
 			}
 			roundVal += cardVal;
 		}
-		
 		let players = this.state.players;
 		players[winner].score += roundVal;
-
+		/* Save winner to state */
 		this.setState({ roundWinner : winner} );
 	
 		/* 1s Timeout so we can show round winner */
 		setTimeout(()=> {
 			/* Unblock user action */
 			this.setState({ blockingUser : false });
-			this.setState({ activePlayer : 0 });
+
 			this.setState({ players : players });
-			this.setState({ roundWinner : false });
-			// Starting new round - reset array
+			
+			/* Starting new round - reset */
 			let newRound = [];
 			this.setState({round: newRound })
-
-			// END OF THE GAME
+			this.setState({ activePlayer : 0 });
+			this.setState({ roundWinner : false });
+	
 			if(players[winner].cardsCount === 0) {
+				/* END OF THE GAME */
 				this.onEndOfGame(winner);
 			}
 		},1000)
 	}
 
+	/**
+	 * Get the game winner and finish game
+	 * @param {Number} winnerIndex 
+	 */
 	onEndOfGame(winnerIndex) {
+		/* Get max score */
 		let maxResult = Math.max.apply(Math,this.state.players.map(function(o){return o.score;}))
+
+		/* Get users with that max score */
 		let winners = this.state.players.filter(function(o){ 
 			return o.score === maxResult; 
 		})
@@ -279,6 +306,7 @@ class App extends Component {
 
   	render() {
 
+		/* Dont show game until cards are drawed*/
 		if(this.state.gameLoaded) {
 			return (
 				<div className="game-table">

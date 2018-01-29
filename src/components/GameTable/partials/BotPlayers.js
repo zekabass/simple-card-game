@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+/* Loading bot pictures */
 import Player_1 from '../../../dist/img/poker_1.jpg';
 import Player_2 from '../../../dist/img/poker_2.jpg';
 import Player_3 from '../../../dist/img/poker_3.jpg';
@@ -7,11 +8,14 @@ import Player_3 from '../../../dist/img/poker_3.jpg';
 class App extends Component {
 
   	render(props) {	
-		/* GENERATING BOT PLAYERS */ 
+		  
 		let genPlayers = [];
 		let img;
+
+		/* Generating bot players */ 
 		for (let i = 1; i < this.props.numOfPlayers; i++) {
 
+			/* Set bot profile pictures */
 			if(i===1) {
 				img = Player_1
 			}
