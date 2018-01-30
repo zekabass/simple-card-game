@@ -59,6 +59,7 @@ class App extends Component {
 				score: 0,
 				name: ''	
 			})
+			/* User always have 0 index */
 			if(i === 0) {
 				this.state.players[i].name = this.props.playerName;
 			} else {
