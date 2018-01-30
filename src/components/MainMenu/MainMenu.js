@@ -29,7 +29,7 @@ class App extends Component {
 				</div>
 
 				<div className="section">
-					<div className="columns is-centered">
+					<div className="columns select-player is-centered">
 						<div className="column is-narrow">
 							<label className="radio">
 								<input type="radio" name="players" value="2" onChange={this.props.numOfPlayersAction} checked={this.props.numOfPlayers === 2}/>

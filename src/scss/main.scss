@@ -91,3 +91,12 @@ body, button, input, select, textarea {
   }
 }
 
+@media (max-height: 550px) {
+  .select-player {
+    display: flex;
+  }
+  .main-menu .section {
+    padding: 10px;
+  }
+}
+
